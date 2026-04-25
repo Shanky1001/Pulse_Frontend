@@ -23,6 +23,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { googleLoginUrl } from "@/store/api/authApi";
 import { connect } from "@/store/slices/authSlice";
 import { getLocalTestUser, setLocalTestSession } from "@/lib/localTestSession";
+import { apiUrl } from "@/lib/apiBaseUrl";
 
 const FEATURE_BULLETS = [
 	{
@@ -84,7 +85,7 @@ export default function LoginPage() {
 		try {
 			const controller = new AbortController();
 			const t = window.setTimeout(() => controller.abort(), 800);
-			const resp = await fetch("/api/health", {
+			const resp = await fetch(apiUrl("/health"), {
 				method: "GET",
 				credentials: "include",
 				signal: controller.signal,
